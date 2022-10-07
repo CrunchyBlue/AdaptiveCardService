@@ -1,7 +1,7 @@
 import { CardPayload } from "../interfaces/payload";
 
 export const basePayload: CardPayload = {
-  marcomLogo: process.env.LOGO_URL,
+  marcomLogo: process.env.IMAGE_URL,
   title: "",
   env: "",
   servicesAffected: "",
