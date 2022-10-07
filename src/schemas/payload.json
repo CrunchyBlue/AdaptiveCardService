@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "http://localhost:3000/schema",
+  "type": "object",
+  "default": {},
+  "title": "Alert Payload Schema",
+  "description": "The default alert payload schema expected by our application for rendering adaptive cards.",
+  "required": [
+    "source",
+    "viewUrl",
+    "documents"
+  ],
+  "properties": {
+    "source": {
+      "type": "string",
+      "default": "",
+      "title": "Payload Source",
+      "description": "The source of the payload",
+      "examples": [
+        "heartbeat"
+      ]
+    },
+    "viewUrl": {
+      "type": "string",
+      "default": "",
+      "title": "Payload View URL",
+      "description": "The root cause or triggered alert url",
+      "examples": [
+        "https://printable-logs.kb.us-east-1.aws.found.io:9243/app/management/insightsAndAlerting/triggersActions/rule/4370a070-432c-11ed-b5d7-fbafe3816485"
+      ]
+    },
+    "documents": {
+      "type": "array",
+      "default": [],
+      "title": "Payload Documents",
+      "description": "The documents that met trigger conditions for adaptive card alerting",
+      "items": {
+        "type": "object",
+        "title": "Payload Document",
+        "description": "A document with pertinent information regarding an alert",
+        "required": [
+          "title",
+          "description",
+          "location",
+          "createdDate",
+          "tags"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Alert Title",
+            "description": "The title of the triggered alert",
+            "examples": [
+              "Test Endpoint",
+              "Auto Job Ticket Error",
+              "Files",
+              "Invalid Session Token",
+              "Catalog Tree Node Log"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Alert Description",
+            "description": "The description of the triggered alert",
+            "examples": [
+              "lookup marcom-test.com on 10.0.0.10:53: no such host",
+              "Get \"https://services.printable.com/Monitoring/Default.aspx?Mode=AJTErrors\": http: request timed out while waiting for response (Client.Timeout exceeded while awaiting headers)",
+              "failed reading HTTP response body: connection closed unexpectedly: unexpected EOF",
+              "Get \"https://services.printable.com/Monitoring/Default.aspx?Mode=sesTokenErr\": http: request timed out while waiting for response (Client.Timeout exceeded while awaiting headers)",
+              "Get \"https://services.printable.com/Monitoring/Default.aspx?mode=cattreenode\": http: request timed out while waiting for response (Client.Timeout exceeded while awaiting headers)"
+            ]
+          },
+          "location": {
+            "type": "string",
+            "title": "Alert location",
+            "description": "The geo location of the triggered alert",
+            "examples": [
+              "East Asia",
+              "West US",
+              "West Europe",
+              "Central US",
+              "East US"
+            ]
+          },
+          "createdDate": {
+            "type": "string",
+            "title": "Alert Created Date",
+            "description": "The date the triggered alert was created",
+            "examples": [
+              "2022-10-04T18:01:49.618Z",
+              "2022-10-04T18:01:48.466Z",
+              "2022-10-04T18:01:47.974Z",
+              "2022-10-04T18:01:47.973Z",
+              "2022-10-04T18:01:47.961Z",
+              "2022-10-04T18:01:45.772Z",
+              "2022-10-04T17:58:27.471Z",
+              "2022-10-04T17:58:22.688Z"
+            ]
+          },
+          "tags": {
+            "type": "string",
+            "title": "Alert Tags",
+            "description": "The tags for the triggered alert. Tags are expected to be a comma separated string with values for the environment (e.g. 'Production' or 'QA'), the affected servers (e.g. 'lvpdbc01') and remediation team (e.g. 'Platform', 'IT', or 'Engineering')",
+            "examples": [
+              "QA,serverclass01-04,Platform",
+              "Production,lvpdmn01-03,Platform",
+              "Production,sdxftp03-04,Platform",
+              "Production,lvpdbc01,Platform",
+              "Production,lvpadt01-04,Platform"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
