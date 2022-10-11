@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  adaptive-card:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    env_file:
+      - .env
+    volumes:
+      - ./src:/var/www/adaptive-card/src
+    container_name: adaptive-card
+    restart: always
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    command: sh -c "npm install && npm run dev"
