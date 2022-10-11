@@ -1,9 +1,8 @@
-if (process.env.NODE_ENV !== "Production") {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-import express from "express";
-import { Application } from "express";
+import express, { Application } from "express";
 import * as bodyParser from "body-parser";
 
 import routes from "./routes/routes";
